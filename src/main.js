@@ -1,2 +1,2 @@
-const greeting = 'Hello World';
+const greeting = 'Hello China';
 console.log(greeting);
