@@ -1,18 +1,10 @@
-class Car {
-    engine;
+const http = require('http');
 
-    constructor(engine) {
-        this.engine = engine;
-        console.log('一辆崭新的汽车');
-    }
+const server = http.createServer((request, response) => {
+    response.write('hello world~');
+    response.end();
+});
 
-    drive() {
-        console.log('正常行驶');
-    }
-}
-
-class pickupTruck extends Car {}
-
-const p1 = new pickupTruck('v8');
-p1.drive();
-console.log(p1);
+server.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
