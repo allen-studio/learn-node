@@ -1,22 +1,54 @@
-const http = require('http'); // 引入http模块，用于创建HTTP服务器
+// 引入 express 模块
+const express = require('express');
+// 创建 express 应用
+const app = express();
+// 设置服务器端口
+const port = 3000;
 
-const server = http.createServer((request, response) => { // 创建一个HTTP服务器，并定义请求处理函数
-   const data = { // 定义要返回的数据
-    id: 1,
-    author: '李煜', // 诗的作者
-    poem: '春花秋月何时了，往事知多少。小楼昨夜又东风，故国不堪回首月明中。' // 诗的内容
-   }
-
-   const jsonData = JSON.stringify(data); // 将数据对象转换为JSON字符串
-
-   response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' }); // 设置响应头，状态码200，内容类型为JSON
-
-   response.write(jsonData); // 写入JSON数据到响应中
-   
-    response.end(); // 结束响应
+// 启动服务器并监听指定端口
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 
-server.listen(3000, () => { // 让服务器监听3000端口
-    console.log('Server running on port 3000'); // 在控制台输出服务器运行信息
+// 定义根路由，返回 'Hello World'
+app.get('/', (req, res) => {
+    res.send('Hello World');
 });
 
+// 定义一个数据数组，包含多个帖子
+const data = [
+    {
+        id: 1,
+        title: 'title1',
+        content: 'content1',
+        author: 'author1',
+    },
+    {
+        id: 2,
+        title: 'title2',
+        content: 'content2',
+        author: 'author2',
+    },
+    {
+        id: 3,
+        title: 'title3',
+        content: 'content3',
+        author: 'author3',
+    }
+];
+
+// 定义 '/posts' 路由，返回所有帖子数据
+app.get('/posts', (req, res) => {
+    res.send(data);
+});
+
+// 定义 '/posts/:postId' 路由，根据 postId 返回特定帖子
+app.get('/posts/:postId', (req, res) => {
+    const postId = req.params.postId; // 获取请求参数中的 postId
+
+    // 将 postId 转换为数字并过滤数据
+    const posts = data.filter(item => item.id === Number(postId));
+
+    // 返回找到的帖子
+    res.send(posts[0]);
+});
