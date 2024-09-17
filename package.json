@@ -2,8 +2,19 @@
   "name": "learn-node",
   "version": "1.0.0",
   "author": "CHSFM <allen_studio@foxmail.com>",
+  "scripts": {
+    "start:dev": "tsc-watch --onSuccess \"node dist/main.js\"",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
   "description": "《编程学习项目》",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "@types/node": "^22.5.5",
+    "prettier": "^1.19.1",
+    "tsc-watch": "^4.2.3",
+    "typescript": "^5.6.2"
   }
 }
