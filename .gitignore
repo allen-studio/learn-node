@@ -13,8 +13,12 @@ lerna-debug.log*
 .idea
 .vscode
 
+# IDE - VSCODE
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/tasks.json
+
+# App
+.env*
